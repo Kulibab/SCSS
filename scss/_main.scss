@@ -1,0 +1,305 @@
+@mixin clearAll {
+
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    font,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@mixin header-bg($url) {
+    background: url($url);
+    border-radius: 0 0 40% 0;
+    background-position: 0% 50%;
+}
+
+@mixin headerHeading {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 66px;
+    font-weight: bold;
+    display: block;
+    max-width: 600px;
+    line-height: 1.1;
+    padding: 50px 0 30px;
+}
+
+@mixin wordBg($left, $top, $width, $height) {
+    z-index: 0;
+    position: relative;
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: $width;
+        height: $height;
+        background: map-get($colors, wordBg);
+        left: $left;
+        top: $top;
+        z-index: -1;
+    }
+}
+
+@mixin link($color, $fsize) {
+    color: $color;
+    font-family: $headerTextFont;
+    font-size: $fsize;
+    display: inline-block;
+}
+
+@mixin btn {
+    display: inline-block;
+    padding: 12px 40px;
+    background: map-get($colors, buttonBGColor);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-family: $headerTextFont;
+}
+
+@include clearAll;
+
+body {
+    background: map-get($colors, bodyBg);
+}
+
+.landing-logo {
+    display: flex;
+    padding: 20px 0;
+
+    p {
+        margin-top: 10px;
+        margin-left: 20px;
+        text-align: center;
+        max-width: $logoWidth;
+        font-family: $logoFont;
+        font-size: 24px;
+        line-height: 15px;
+        word-break: break-all;
+    }
+
+    span {
+        font-size: 10px;
+    }
+}
+
+.header {
+    @include header-bg($bgUrl);
+    color: map-get($colors, headerColor);
+    padding-bottom: 160px;
+
+    .header-wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+
+        .header_heading {
+            @include headerHeading;
+            @include wordBg(0, 144px, 278px, 45px);
+        }
+
+        .header_text {
+            font-family: $logoFont;
+            white-space: pre-line;
+            padding-bottom: 60px;
+            line-height: 1.6;
+            font-size: 15px;
+            letter-spacing: 0.03em;
+        }
+
+        .header_button {
+            @include btn
+        }
+
+        .login {
+            @include link(white, 18px);
+            padding-left: 140px;
+        }
+    }
+}
+
+main {
+    .section_text {
+        color: map-get($colors, headerColor);
+        display: block;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 35px;
+        text-align: center;
+        font-size: 40px;
+        font-family: $headerTextFont;
+        @include wordBg(345px, 33px, 173px, 44px);
+    }
+
+    .section_card_wrap {
+        text-align: center;
+        margin: 0 auto 140px;
+        max-width: 840px;
+
+        .section_card {
+            display: flex;
+            background: map-get($colors, mainItemBg);
+            margin-bottom: 20px;
+            border-radius: 5px;
+
+            .section_card_img {
+                margin: 18px;
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            .section_card_right_container {
+                color: map-get($colors, greyColor);
+                padding: 30px;
+
+                .section_card_heading {
+                    color: white;
+                    font-weight: 600;
+                    font-family: $headerTextFont;
+                    padding: 15px;
+                    font-size: 22px;
+
+                }
+
+                .section_card_text {
+                    font-family: $logoFont;
+                    font-size: 15px;
+                    line-height: 1.5;
+                    text-align: justify;
+                    padding: 0 60px 0 40px;
+                }
+
+                .section_link {
+                    @include link(map-get($colors, greyColor), 16px);
+                    padding: 10px 0 20px 0;
+                }
+            }
+        }
+    }
+
+    .section_banner {
+        display: flex;
+        max-width: 860px;
+        margin: 0 auto -69px;
+        z-index: 1;
+        padding: 23px;
+        border-radius: 5px;
+        justify-content: space-around;
+        background: linear-gradient(45deg, map-get($colors, buttonBGColor), map-get($colors, gradColor));
+
+        .section_banner_text_wrap {
+            color: map-get($colors, headerColor);
+
+            .section_banner_heading {
+                font-family: $headerTextFont;
+                font-size: 28px;
+                font-weight: bold;
+                @include wordBg(112px, -10px, 60px, 48px);
+            }
+
+            .section_banner_text {
+                font-family: $logoFont;
+                color: map-get($colors, greyColor);
+                font-size: 15px;
+                padding: 15px 0;
+            }
+        }
+
+        .section_banner_button {
+            @include btn;
+            max-height: 46px;
+            margin: auto 0;
+            align-items: center;
+        }
+
+    }
+}
+
+.footer {
+    background: map-get($colors, mainItemBg);
+    z-index: -1;
+    position: relative;
+    padding: 72px 0 20px 0;
+    color: map-get($colors, greyColor);
+
+    .footer-wrap {
+        display: flex;
+        max-width: 1140px;
+        justify-content: space-between;
+        margin: 0 auto;
+        vertical-align: baseline;
+        align-items: center;
+        padding: 25px 0;
+        font-family: $logoFont;
+
+        .footer_logo {
+            @extend .landing-logo;
+        }
+
+        .footer_text {
+            width: 280px;
+            font-size: 13px;
+            line-height: 18px;
+        }
+    }
+}
